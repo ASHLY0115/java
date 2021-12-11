@@ -34,6 +34,7 @@ public class Area {
 		{
 			
 			
+			
 		System.out.println("\t\tArea of Shapes");
 		System.out.println("1.Circle\n2.Rectangle\n3.Triangle\n");
 		System.out.println("Enter an option number : ");
