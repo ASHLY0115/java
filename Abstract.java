@@ -7,8 +7,8 @@
 import java.util.Scanner;
 abstract class Shape
 {
-public void numberofSides()
-{}
+public void numberofSides();
+
 }
 class Triangle extends Shape
 {
