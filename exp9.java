@@ -1,3 +1,6 @@
+//file handling program in Java with reader/writer.
+// file sample.txt and store the inputs given from the keyboard.
+//after execution of program a new file is generated with name "new-sample.txt" with the contents from sample.txt.
 
 import java.util.*;
 import java.io.*;
