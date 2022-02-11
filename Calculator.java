@@ -1,7 +1,7 @@
 /********************************************
  *  FILE        : Experiment 5
  *  DESCRIPTION : JAVA PROGRAM (ABSTRACT)  
- *  AUTHOR      : NAVEEN S PANANTHANAM
+ *  AUTHOR      : ashly rose antony
  *  VERSION     : 1
  *  DATE        : 6/2/22
  ********************************************/
