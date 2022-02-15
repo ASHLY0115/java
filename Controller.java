@@ -1,26 +1,49 @@
-package test;
 
-import javax.swing.JOptionPane;public class Controller { private Model model;
-private View view; public Controller(Model m, View v) {
- model = m;
- view = v;
- initView();
-} public void initView() {
- view.getFirstnameTextfield().setText(model.getFirstname());
- view.getLastnameTextfield().setText(model.getLastname());
-} public void initController() {
- view.getFirstnameSaveButton().addActionListener(e -> saveFirstname());
- view.getLastnameSaveButton().addActionListener(e -> saveLastname());
- view.getHello().addActionListener(e -> sayHello());
- view.getBye().addActionListener(e -> sayBye());
-} private void saveFirstname() {
- model.setFirstname(view.getFirstnameTextfield().getText());
- JOptionPane.showMessageDialog(null, "Firstname saved : " + model.getFirstname(), "Info", JOptionPane.INFORMATION_MESSAGE);
-} private void saveLastname() {
- model.setLastname(view.getLastnameTextfield().getText());
- JOptionPane.showMessageDialog(null, "Lastname saved : " + model.getLastname(), "Info", JOptionPane.INFORMATION_MESSAGE);
-} private void sayHello() {
- JOptionPane.showMessageDialog(null, "Hello " + model.getFirstname() + " " + model.getLastname(), "Info", JOptionPane.INFORMATION_MESSAGE);
-} private void sayBye() {
- System.exit(0);
-}}
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ * @author ashraf
+ *
+ */
+public class Controller implements ActionListener {
+	
+	private JTextField searchTermTextField = new JTextField(26);
+	private DefaultTableModel model;
+
+	public Controller(JTextField searchTermTextField, DefaultTableModel model) {
+		super();
+		this.searchTermTextField = searchTermTextField;
+		this.model = model;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		String searchTerm = searchTermTextField.getText();
+		if (searchTerm != null && !"".equals(searchTerm)) {
+			Object[][] newData = new Object[Constants.DATA.length][];
+			int idx = 0;
+			for (Object[] o: Constants.DATA) {
+				if ("*".equals(searchTerm.trim())) {
+					newData[idx++] = o;
+				} else {
+					if(String.valueOf(o[0]).startsWith(searchTerm.toUpperCase().trim())){
+						newData[idx++] = o;
+					}	
+				}	
+			}
+			model.setDataVector(newData, Constants.TABLE_HEADER);
+		} else {
+			JOptionPane.showMessageDialog(null,
+					"Search term is empty", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+}
